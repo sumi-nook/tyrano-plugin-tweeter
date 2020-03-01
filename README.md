@@ -22,6 +22,10 @@ Twitter風ウィンドウを表示します。
 * `left`: px
 * `width`: px
 * `height`: px
+* `thema_color`: ナビゲーションバーの色（`#1ca0f1`）
+* `logo_path`: ロゴ画像
+* `border_radius`: ウィンドウの角を丸める（任意）※CSS`border-radius`参照
+* `hide`: `true`指定でウィンドウ作成時に非表示にする（`show_tweeter`参照）
 
 ```
 [enable_tweeter top=0 left=660 width=300 height=640]
@@ -33,7 +37,7 @@ Twitter風ウィンドウを表示します。
 
 * `name`: アカウント名
 * `screen_name`: `@〜`に入るアカウント名（`@`は自動で付きます）
-* `mode`: 先頭追加`"front"`(default) または 末尾追加`"last"`
+* `mode`: 先頭追加`"front"`(default) または 末尾追加`"back"`
 * `id`: ツイートID （任意）
 
 ```

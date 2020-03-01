@@ -5,6 +5,8 @@
 ; * height: px
 ; * thema_color: color string
 ; * logo_path: logo image path
+; * border_radius: window border-radius
+; * hide: create with hide
 [macro name="enable_tweeter"]
 
 ; Tweeter Window
@@ -16,6 +18,8 @@ mp.width = mp.width || "300";
 mp.height = mp.height || "640";
 mp.thema_color = mp.thema_color || "#1ca0f1";
 mp.logo_path = mp.logo_path || "./data/others/plugin/tweeter/3rdparty/Twitter_Logo/Twitter_Logo_WhiteOnImage.svg";
+mp.border_radius = mp.border_radius || "";
+mp.hide = mp.hide || "";
 
 // load css
 let head = document.getElementsByTagName('head')[0];
@@ -63,8 +67,22 @@ let root = document.createElement("div");
 root.id = "tweeter";
 root.className = "tweeter";
 root.style.cssText = "width: " + mp.width + "px; height: " + mp.height + "px; top: " + mp.top + "px; left: " + mp.left + "px;";
+if ( mp.border_radius ) {
+  root.style.cssText += " border-radius: " + mp.border_radius + "px;";
+}
 
-let navbar = $.parseHTML('<nav class="navbar" style="background-color: ' + mp.thema_color + ';"><img class="logo" src="' + mp.logo_path + '" width="30" height="30" alt=""/></nav>')[0];
+let navbar = document.createElement("nav");
+navbar.className = "navbar";
+navbar.style.cssText = "background-color: " + mp.thema_color + ";";
+if ( mp.border_radius ) {
+  navbar.style.cssText += " border-radius: " + mp.border_radius + "px " + mp.border_radius + "px 0px 0px;";
+}
+let logo = document.createElement("img");
+logo.className = "logo";
+logo.width = 30;
+logo.height = 30;
+logo.src = mp.logo_path;
+navbar.appendChild(logo);
 root.appendChild(navbar);
 
 let contents = document.createElement("div");
@@ -82,7 +100,7 @@ tyrano_base.appendChild(root);
 ; * icon_path: icon source path
 ; * name: user name
 ; * screen_name: account name
-; * mode: "front" or "last"
+; * mode: "front" or "back"
 ; * id: tweet_id
 [macro name="add_tweet"]
 
@@ -136,7 +154,7 @@ if ( root ) {
   body.appendChild(footer);
 
   tweet.appendChild(body);
-  if ( mp.mode == "last" ) {
+  if ( mp.mode == "back" ) {
     root.appendChild(tweet);
   } else {
     root.insertBefore(tweet, root.childNodes[0]);
