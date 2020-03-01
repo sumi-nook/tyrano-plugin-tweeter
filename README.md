@@ -2,6 +2,8 @@
 
 ティラノスクリプト用Twitter風ウィンドウプラグイン
 
+![sample](./docs/images/sample.png)
+
 ## 使い方
 
 1. ティラノスクリプトの`data/others/plugin`フォルダに`tweeter`フォルダをコピーします
