@@ -8,9 +8,9 @@
 
 1. ティラノスクリプトの`data/others/plugin`フォルダに`tweeter`フォルダをコピーします
 2. `first.ks`等で`[plugin name="tweeter"]`を呼びロードします
-3. 使用したいところで`[enable_tweeter top=... left=... width=... height=...]`を呼びウィンドウを作成します
+3. 使用したいところで`[create_tweeter top=... left=... width=... height=...]`を呼びウィンドウを作成します
 4. ツイートを追加したいところで`[add_tweet name=... screen_name=... text=...]`を呼ぶことでウィンドウにツイートが追加されます
-5. 不要になったら`[disable_tweeter]`を呼び、ウィンドウを削除します
+5. 不要になったら`[delete_tweeter]`を呼び、ウィンドウを削除します
 
 ### create_tweeter
 
