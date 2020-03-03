@@ -1,4 +1,4 @@
-; [enable_tweeter]
+; [create_tweeter]
 ; * top: px
 ; * left: px
 ; * width: px
@@ -7,7 +7,7 @@
 ; * logo_path: logo image path
 ; * border_radius: window border-radius
 ; * hide: create with hide
-[macro name="enable_tweeter"]
+[macro name="create_tweeter"]
 
 ; Tweeter Window
 [iscript]
@@ -143,13 +143,40 @@ if ( root ) {
   let footer = document.createElement("div");
   footer.className = "footer clearfix";
   let comment = document.createElement("span");
-  comment.className = "far fa-comment";
+  comment.className = "footer-icon";
+  let comment_icon = document.createElement("span");
+  comment_icon.className = "far fa-comment icon";
+  comment.appendChild(comment_icon);
+  if ( mp.id ) {
+    let comment_count = document.createElement("span");
+    comment_count.id = "tweet-reply-" + mp.id;
+    comment_count.className = "count";
+    comment.appendChild(comment_count);
+  }
   footer.appendChild(comment);
   let retweet = document.createElement("span");
-  retweet.className = "fa fa-retweet";
+  retweet.className = "footer-icon";
+  let retweet_icon = document.createElement("span");
+  retweet_icon.className = "fa fa-retweet icon";
+  retweet.appendChild(retweet_icon);
+  if ( mp.id ) {
+    let retweet_count = document.createElement("span");
+    retweet_count.id = "tweet-retweet-" + mp.id;
+    retweet_count.className = "count";
+    retweet.appendChild(retweet_count);
+  }
   footer.appendChild(retweet);
   let heart = document.createElement("span");
-  heart.className = "far fa-heart";
+  heart.className = "footer-icon";
+  let heart_icon = document.createElement("span");
+  heart_icon.className = "far fa-heart icon";
+  heart.appendChild(heart_icon);
+  if ( mp.id ) {
+    let heart_count = document.createElement("span");
+    heart_count.id = "tweet-favorite-" + mp.id;
+    heart_count.className = "count";
+    heart.appendChild(heart_count);
+  }
   footer.appendChild(heart);
   body.appendChild(footer);
 
@@ -163,6 +190,80 @@ if ( root ) {
 [endscript]
 
 [endmacro]
+
+
+; [set_reply]
+; * id: tweet_id
+; * value: reply count
+[macro name="set_reply"]
+
+[iscript]
+mp.id = mp.id || "";
+mp.value = mp.value || "0";
+
+if ( mp.id ) {
+  let count = document.getElementById("tweet-reply-" + mp.id);
+  if ( count ) {
+    if ( mp.value == "0" ) {
+      count.textContent = "";
+    } else {
+      count.textContent = mp.value;
+    }
+  }
+}
+[endscript]
+
+[endmacro]
+
+
+; [set_retweet]
+; * id: tweet_id
+; * value: retweet count
+[macro name="set_retweet"]
+
+[iscript]
+mp.id = mp.id || "";
+mp.value = mp.value || "0";
+
+if ( mp.id ) {
+  let count = document.getElementById("tweet-retweet-" + mp.id);
+  if ( count ) {
+    if ( mp.value == "0" ) {
+      count.textContent = "";
+    } else {
+      count.textContent = mp.value;
+    }
+  }
+}
+[endscript]
+
+[endmacro]
+
+
+; [set_favorite]
+; * id: tweet_id
+; * value: favorite count
+[macro name="set_favorite"]
+
+[iscript]
+mp.id = mp.id || "";
+mp.value = mp.value || "0";
+
+if ( mp.id ) {
+  let count = document.getElementById("tweet-favorite-" + mp.id);
+  console.log(count);
+  if ( count ) {
+    if ( mp.value == "0" ) {
+      count.textContent = "";
+    } else {
+      count.textContent = mp.value;
+    }
+  }
+}
+[endscript]
+
+[endmacro]
+
 
 ; [remove_tweet]
 ; * id: tweet_id
@@ -225,8 +326,8 @@ if ( root ) {
 [endmacro]
 
 
-; [disable_tweeter]
-[macro name="disable_tweeter"]
+; [delete_tweeter]
+[macro name="delete_tweeter"]
 
 [iscript]
 let tyrano_base = document.getElementById("tyrano_base");

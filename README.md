@@ -12,7 +12,7 @@
 4. ツイートを追加したいところで`[add_tweet name=... screen_name=... text=...]`を呼ぶことでウィンドウにツイートが追加されます
 5. 不要になったら`[disable_tweeter]`を呼び、ウィンドウを削除します
 
-### enable_tweeter
+### create_tweeter
 
 Twitter風ウィンドウを表示します。
 
@@ -28,7 +28,7 @@ Twitter風ウィンドウを表示します。
 * `hide`: `true`指定でウィンドウ作成時に非表示にする（`show_tweeter`参照）
 
 ```
-[enable_tweeter top=0 left=660 width=300 height=640]
+[create_tweeter top=0 left=660 width=300 height=640]
 ```
 
 ### add_tweet
@@ -42,6 +42,39 @@ Twitter風ウィンドウを表示します。
 
 ```
 [add_tweet name="ユーザーネーム" screen_name="username" text="Hello World!" id="0001"]
+```
+
+### set_reply
+
+ツイートを指定して返信数を更新します。
+
+* `id`: `add_tweet`で指定した`id`
+* `value`: 返信数
+
+```
+[set_reply id="0001" value="1"]
+```
+
+### set_retweet
+
+ツイートを指定してリツイート数を更新します。
+
+* `id`: `add_tweet`で指定した`id`
+* `value`: リツイート数
+
+```
+[set_retweet id="0001" value="1"]
+```
+
+### set_favorite
+
+ツイートを指定してお気に入り数を更新します。
+
+* `id`: `add_tweet`で指定した`id`
+* `value`: お気に入り数
+
+```
+[set_favorite id="0001" value="1"]
 ```
 
 ### remove_tweet
@@ -78,13 +111,15 @@ Twitter風ウィンドウを表示します。
 [show_tweeter]
 ```
 
-### disable_tweeter
+### delete_tweeter
 
 ウィンドウを削除します。
 （ツイートが消えます）
 
+ウィンドウが存在しない場合は何もしないので、タイトル画面等で予防的に呼び出しても問題ありません。
+
 ```
-[disable_tweeter]
+[delete_tweeter]
 ```
 
 ## LICENSE
