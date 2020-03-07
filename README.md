@@ -9,7 +9,7 @@
 1. ティラノスクリプトの`data/others/plugin`フォルダに`tweeter`フォルダをコピーします
 2. `first.ks`等で`[plugin name="tweeter"]`を呼びロードします
 3. 使用したいところで`[create_tweeter top=... left=... width=... height=...]`を呼びウィンドウを作成します
-4. ツイートを追加したいところで`[add_tweet name=... screen_name=... text=...]`を呼ぶことでウィンドウにツイートが追加されます
+4. ツイートを追加したいところで`[tweet name=... screen_name=...]...[endtweet]`を呼ぶことでウィンドウにツイートが追加されます
 5. 不要になったら`[delete_tweeter]`を呼び、ウィンドウを削除します
 
 ### create_tweeter
@@ -32,18 +32,25 @@ Twitter風ウィンドウを表示します。
 [create_tweeter top=0 left=660 width=300 height=640]
 ```
 
-### add_tweet
+### tweet
 
 ウィンドウにツイートを追加します。
 
 * `name`: アカウント名
 * `screen_name`: `@〜`に入るアカウント名（`@`は自動で付きます）
-* `text`: ツイート本文
 * `mode`: 先頭追加`"front"`(default) または 末尾追加`"back"`
 * `id`: ツイートID （任意）
 
 ```
-[add_tweet name="ユーザーネーム" screen_name="username" text="Hello World!" id="0001"]
+[tweet name="ユーザーネーム" screen_name="username" id="0001"]Hello World![endtweet]
+```
+
+### endtweet
+
+`[tweet]`タグを閉じます。
+
+```
+[tweet name="ユーザーネーム" screen_name="username" id="0001"]Hello World![endtweet]
 ```
 
 ### set_reply
