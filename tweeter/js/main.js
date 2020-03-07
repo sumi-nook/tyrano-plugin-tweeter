@@ -179,14 +179,17 @@
         let body = document.createElement("div");
         body.className = "media-body";
         // name
-        let name = document.createElement("div");
+        let name_wrap = document.createElement("div");
+        name_wrap.className = "name-container";
+        let name = document.createElement("span");
         name.className = "name";
         name.appendChild(document.createTextNode(pm.name));
+        name_wrap.appendChild(name);
         let screen_name = document.createElement("span");
         screen_name.className = "screen_name";
         screen_name.appendChild(document.createTextNode("@" + pm.screen_name));
-        name.appendChild(screen_name);
-        body.appendChild(name);
+        name_wrap.appendChild(screen_name);
+        body.appendChild(name_wrap);
         body.appendChild(document.createTextNode(pm.text));
         // footer
         let footer = document.createElement("div");
