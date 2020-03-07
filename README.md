@@ -26,6 +26,7 @@ Twitter風ウィンドウを表示します。
 * `logo_path`: ロゴ画像
 * `border_radius`: ウィンドウの角を丸める（任意）※CSS`border-radius`参照
 * `hide`: `true`指定でウィンドウ作成時に非表示にする（`show_tweeter`参照）
+* `backlog`: バックログ出力有効
 
 ```
 [create_tweeter top=0 left=660 width=300 height=640]
@@ -37,6 +38,7 @@ Twitter風ウィンドウを表示します。
 
 * `name`: アカウント名
 * `screen_name`: `@〜`に入るアカウント名（`@`は自動で付きます）
+* `text`: ツイート本文
 * `mode`: 先頭追加`"front"`(default) または 末尾追加`"back"`
 * `id`: ツイートID （任意）
 
@@ -109,6 +111,22 @@ Twitter風ウィンドウを表示します。
 
 ```
 [show_tweeter]
+```
+
+### disable_tweeter_backlog
+
+バックログ出力を停止します。
+
+```
+[disable_tweeter_backlog]
+```
+
+### enable_tweeter_backlog
+
+バックログ出力を開始します。
+
+```
+[enable_tweeter_backlog]
 ```
 
 ### delete_tweeter

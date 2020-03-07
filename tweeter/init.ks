@@ -20,6 +20,11 @@ mp.thema_color = mp.thema_color || "#1ca0f1";
 mp.logo_path = mp.logo_path || "./data/others/plugin/tweeter/3rdparty/Twitter_Logo/Twitter_Logo_WhiteOnImage.svg";
 mp.border_radius = mp.border_radius || "";
 mp.hide = mp.hide || "";
+mp.backlog = mp.backlog || "true";
+
+this.tweeter = {
+  "backlog": mp.backlog == "false" ? false : true,
+};
 
 // load css
 let head = document.getElementsByTagName('head')[0];
@@ -109,12 +114,13 @@ tyrano_base.appendChild(root);
 mp.icon_path = mp.icon_path || "./data/others/plugin/tweeter/img/twitter_default.jpg";
 mp.name = mp.name || "Unknown";
 mp.screen_name = mp.screen_name || "unknown";
+mp.text = mp.text || "";
 mp.mode = mp.mode || "front";
 mp.id = mp.id || "";
 
 
 let root = document.getElementById("tweeter_contents");
-if ( root ) {
+if ( root && mp.text ) {
   let tweet = document.createElement("div");
   tweet.className = "media";
   if ( mp.id ) {
@@ -185,6 +191,10 @@ if ( root ) {
     root.appendChild(tweet);
   } else {
     root.insertBefore(tweet, root.childNodes[0]);
+  }
+
+  if (this.tweeter.backlog) {
+    this.kag.pushBackLog("<b class='backlog_chara_name tweeter-"+mp.screen_name+"'>"+mp.name+"@"+mp.screen_name+"</b>：<span class='backlog_text tweeter-"+mp.screen_name+"'>"+mp.text+"</span>", "add");
   }
 }
 [endscript]
@@ -320,6 +330,30 @@ if ( root ) {
 let root = document.getElementById("tweeter");
 if ( root ) {
   root.style.display = "block";
+}
+[endscript]
+
+[endmacro]
+
+
+; [disable_tweeter_backlog]
+[macro name="disable_tweeter_backlog"]
+
+[iscript]
+if ( this.tweeter ) {
+  this.tweeter.backlog = false;
+}
+[endscript]
+
+[endmacro]
+
+
+; [enable_tweeter_backlog]
+[macro name="enable_tweeter_backlog"]
+
+[iscript]
+if ( this.tweeter ) {
+  this.tweeter.backlog = true;
 }
 [endscript]
 
